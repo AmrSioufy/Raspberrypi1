@@ -36,7 +36,7 @@ for x in zero_to_infinity():
 		distance = round(pulseDuration * 17150, 2)
 		accurate_distance = distance/100
 
-		with open("distance.txt", "a") as f:
+		with open("A_distance.txt", "a") as f:
 			f.write((str(accurate_distance)))
 			f.write('\n')
 

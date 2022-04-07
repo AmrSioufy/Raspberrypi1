@@ -35,6 +35,10 @@ b=GPIO.PWM(enB,1000)
 p.start(current_speed)
 b.start(current_speed)
 
+with open('A_speed.txt') as f:
+    f.write(current_speed)
+    f.write('\n')
+
 print("\n")
 print("The car is now running!")
 print("Enjoy your collision free car ride :)")
@@ -44,21 +48,21 @@ print("\n")
 while True:
 #Sending list of last 6 distance results to a txt file
 #Sending last speed to a txt file
-    Distance_to_txt = "sed -e :a -e '$q;N;7,$D;ba' distance.txt > distance_stream.txt"
-    conversion = "sed -e :a -e '$q;N;2,$D;ba' speed.txt > speed_stream.txt"
+    Distance_to_txt = "sed -e :a -e '$q;N;7,$D;ba' B_distance.txt > B_distance_stream.txt"
+    conversion = "sed -e :a -e '$q;N;2,$D;ba' B_speed.txt > B_speed_stream.txt"
     os.system(conversion)
     os.system(Distance_to_txt)
 
 
 
 #Fetching speed & distance txt files and converting class types to integer
-    with open('speed_stream.txt') as f:
+    with open('B_speed_stream.txt') as f:
         out = f.readlines() #reading from txt file
         storedSpeed = str(out) #converted list to string
         storedSpeed = re.sub('[^0-9]', '', storedSpeed) #filtered string to a value
         storedSpeed = int(storedSpeed) #converting string to int
 
-    with open('distance_stream.txt') as f:
+    with open('B_distance_stream.txt') as f:
         d_out = f.readlines() #reading from txt file
         data = (*d_out,)
         new_list = [x[:-1] for x in data]
