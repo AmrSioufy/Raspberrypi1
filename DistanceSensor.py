@@ -44,7 +44,7 @@ for x in zero_to_infinity():
         pulseDuration = pulseEndTime - pulseStartTime
         distance = round(pulseDuration * 17150, 2)
         print("Distance: %.2f m" % (distance/100))
-        print("Speed:" , x ,"Km/h")
+#        print("Speed:" , x ,"Km/h")
     finally:
         GPIO.cleanup()
 

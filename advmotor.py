@@ -6,6 +6,7 @@ import os
 import sys
 import time
 import re
+import statistics
 
 in1 = 5
 in2 = 6
@@ -38,36 +39,36 @@ print("The default speed & direction of motor is LOW & Forward.....")
 print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
 print("\n")
 
-#    def x():
-#        conversion = "sed -e :a -e '$q;N;1,$D;ba' speed.txt > speed_stream.txt"
-#        os.system(conversion)
-#        with open('speed_stream.txt') as f:
-#            storedSpeed = str(f.readlines()) #reading from txt file
-#            return storedSpeed
-
-
-# if last speed from file x = 25
-# print(platooning active)
-# print(distance between car A and car B)
-
-#conversion = "sed -e :a -e '$q;N;1,$D;ba' speed.txt > speed_stream.txt"
-#os.system(conversion)
-#with open('speed_stream.txt') as f:
-#    storedSpeed = str(f.readlines()) #reading from txt file
-
-
-
-#storedValue = x()
-#print(type(x())
 
 while True:
+    Distance_to_txt = "sed -e :a -e '$q;N;7,$D;ba' distance.txt > distance_stream.txt"
     conversion = "sed -e :a -e '$q;N;2,$D;ba' speed.txt > speed_stream.txt"
     os.system(conversion)
+    os.system(Distance_to_txt)
+
     with open('speed_stream.txt') as f:
         out = f.readlines() #reading from txt file
         storedSpeed = str(out) #converted list to string
         storedSpeed = re.sub('[^0-9]', '', storedSpeed) #filtered string to a value
         storedSpeed = int(storedSpeed) #converting string to int
+
+    with open('distance_stream.txt') as f:
+        d_out = f.readlines() #reading from txt file
+        data = (*d_out,)
+        new_list = [x[:-1] for x in data]
+#        ne_list = [x[:+6] for x in new_list]
+#        print(ne_list)
+#        print(round(ne_list, 2))
+        float_list = [int(float(x)) for x in new_list]
+        #print(float_list)
+        avg = sum(float_list)/len(float_list)
+        print(avg)
+
+#        storedDistance = str(data) #converted list to string
+#        storedDistance = re.sub('[^0-9]','', storedDistance) #filtered string to a value
+#        storedDistance = int(storedDistance) #converting string to int
+#        avg_storedDistance = sum(int(storedDistance)) / 6
+#    print(avg)
 
     GPIO.output(in1,GPIO.HIGH)
     GPIO.output(in2,GPIO.LOW)
