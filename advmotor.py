@@ -76,7 +76,7 @@ while True:
     GPIO.output(in4,GPIO.LOW)
     time.sleep(5)
 
-    if storedSpeed==current_speed:
+    if storedSpeed==current_speed and avg > 2:
         print("Platooning to car B")
         p.ChangeDutyCycle(25)
         b.ChangeDutyCycle(25)
@@ -88,65 +88,7 @@ while True:
         b.ChangeDutyCycle(int(storedSpeed))
 
 
-#        current_speed='z'
-#    elif x=='s':
-#        print("stop")
-#        GPIO.output(in1,GPIO.LOW)
-#        GPIO.output(in2,GPIO.LOW)
-#        GPIO.output(in3,GPIO.LOW)
-#        GPIO.output(in4,GPIO.LOW)
-
-#        x='z'
-#
-#    elif x=='f':
-#        print("forward")
-#        GPIO.output(in1,GPIO.HIGH)
-#        GPIO.output(in2,GPIO.LOW)
-#        GPIO.output(in3,GPIO.HIGH)
-#        GPIO.output(in4,GPIO.LOW)
-#
-#        temp1=1
-#        x='z'
-#
-#    elif x=='b':
-#        print("backward")
-#        GPIO.output(in1,GPIO.LOW)
- #       GPIO.output(in2,GPIO.HIGH)
-  #      GPIO.output(in3,GPIO.LOW)
-   #     GPIO.output(in4,GPIO.HIGH)
-#
- #       temp1=0
-  #      x='z'
-#
- #   elif x=='l':
-  #      print("low")
-   #     p.ChangeDutyCycle(25)
-    #    b.ChangeDutyCycle(25)
-#
- #       x='z'
-#
- #   elif x=='m':
-  #      print("medium")
-   #     p.ChangeDutyCycle(50)
-    #    b.ChangeDutyCycle(50)
-##
-  #      x='z'
-#
- #   elif x=='h':
-  #      print("high")
-   #     p.ChangeDutyCycle(75)
-    #    b.ChangeDutyCycle(75)
-#
- #       x='z'
-#
-#
- #   elif x=='e':
-  #      GPIO.cleanup()
-   #     print("GPIO Clean up")
-    #    break
-#
     else:
         print("<<<  wrong data  >>>")
         print("please enter the defined data to continue.....")
         break
-#
