@@ -34,18 +34,24 @@ b=GPIO.PWM(enB,1000)
 
 p.start(current_speed)
 b.start(current_speed)
+
 print("\n")
-print("The default speed & direction of motor is LOW & Forward.....")
-print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
+print("The car is now running!")
+print("Enjoy your collision free car ride :)")
 print("\n")
 
 
 while True:
+#Sending list of last 6 distance results to a txt file
+#Sending last speed to a txt file
     Distance_to_txt = "sed -e :a -e '$q;N;7,$D;ba' distance.txt > distance_stream.txt"
     conversion = "sed -e :a -e '$q;N;2,$D;ba' speed.txt > speed_stream.txt"
     os.system(conversion)
     os.system(Distance_to_txt)
 
+
+
+#Fetching speed & distance txt files and converting class types to integer
     with open('speed_stream.txt') as f:
         out = f.readlines() #reading from txt file
         storedSpeed = str(out) #converted list to string
@@ -56,11 +62,7 @@ while True:
         d_out = f.readlines() #reading from txt file
         data = (*d_out,)
         new_list = [x[:-1] for x in data]
-#        ne_list = [x[:+6] for x in new_list]
-#        print(ne_list)
-#        print(round(ne_list, 2))
         float_list = [int(float(x)) for x in new_list]
-        #print(float_list)
         avg = sum(float_list)/len(float_list)
         print(avg)
 
@@ -70,25 +72,30 @@ while True:
 #        avg_storedDistance = sum(int(storedDistance)) / 6
 #    print(avg)
 
+
+
+#Motor pins is on
     GPIO.output(in1,GPIO.HIGH)
     GPIO.output(in2,GPIO.LOW)
     GPIO.output(in3,GPIO.HIGH)
     GPIO.output(in4,GPIO.LOW)
     time.sleep(5)
 
+#Decision Blocks#
+
+#
     if storedSpeed==current_speed and avg > 2:
         print("Platooning to car B")
         p.ChangeDutyCycle(25)
         b.ChangeDutyCycle(25)
 
-
+#
     elif storedSpeed<current_speed:
         print("Decreased speed and Platooning to car B")
         p.ChangeDutyCycle(int(storedSpeed))
         b.ChangeDutyCycle(int(storedSpeed))
 
-
+#
     else:
-        print("<<<  wrong data  >>>")
-        print("please enter the defined data to continue.....")
+        print("<<<  ERROR! Check Decision blocks and Motor pin status  >>>")
         break
