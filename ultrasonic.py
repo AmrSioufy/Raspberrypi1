@@ -9,7 +9,7 @@ import os
 def zero_to_infinity():
 	i = 0
 	while True:
-		time.sleep(0.1)
+		time.sleep(0.2)
 		yield i
 		i += 1
 
@@ -39,7 +39,7 @@ for x in zero_to_infinity():
 		with open("A_distance.txt", "a") as f:
 			f.write((str(accurate_distance)))
 			f.write('\n')
-
+#		print(accurate_distance)
 #		if accurate_distance < 2:
 #			print("Warning! : Safety Zone limit exceeded! Distance: %.2f m" % (distance/100))
 #		else:

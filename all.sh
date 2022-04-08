@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./ultrasonic & Transmitter.py & ./car_run.py
+./ultrasonic.py & Transmitter.py & ./car_run.py

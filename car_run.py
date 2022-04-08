@@ -16,7 +16,7 @@ enA = 23
 enB = 24
 temp1=1
 
-current_speed = 50
+current_speed = 70
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(in1,GPIO.OUT)
@@ -52,7 +52,7 @@ while True:
 
 #Sending list of last 6 distance results to a txt file
 #Sending last speed to a txt file
-    Distance_to_txt = "sed -e :a -e '$q;N;7,$D;ba' B_distance.txt > B_distance_stream.txt"
+    Distance_to_txt = "sed -e :a -e '$q;N;7,$D;ba' A_distance.txt > A_distance_stream.txt"
     conversion = "sed -e :a -e '$q;N;2,$D;ba' B_speed.txt > B_speed_stream.txt"
     os.system(conversion)
     os.system(Distance_to_txt)
@@ -66,7 +66,7 @@ while True:
         storedSpeed = re.sub('[^0-9]', '', storedSpeed) #filtered string to a value
         storedSpeed = int(storedSpeed) #converting string to int
 
-    with open('B_distance_stream.txt') as f:
+    with open('A_distance_stream.txt') as f:
         d_out = f.readlines() #reading from txt file
         data = (*d_out,)
         new_list = [x[:-1] for x in data]
@@ -87,7 +87,7 @@ while True:
     GPIO.output(in2,GPIO.LOW)
     GPIO.output(in3,GPIO.HIGH)
     GPIO.output(in4,GPIO.LOW)
-    time.sleep(1)
+    time.sleep(0.5)
 
 #Decision Blocks#
 
@@ -104,6 +104,11 @@ while True:
         b.ChangeDutyCycle(int(storedSpeed)-10)
 
 #
+    elif storedSpeed==0 and avg <= 1:
+        print("Car A about to collide! BRAKING!!!")
+        p.ChangeDutyCycle(0)
+        b.ChangeDutyCycle(0)
+
     elif storedSpeed<current_speed and avg < 2:
         print("Decreased speed and increasing distance from car B")
         p.ChangeDutyCycle(int(storedSpeed)-20)
