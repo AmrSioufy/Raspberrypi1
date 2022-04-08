@@ -1,7 +1,7 @@
 #!/usr/bin/expect -f
 
 # connect via scp
-spawn scp /home/pi/Desktop/Transmitter/stream2.txt "pi@192.168.1.223:~/Desktop/Receiver"
+spawn scp /home/pi/Desktop/Workstation/A_speed.txt /home/pi/Desktop/Workstation/A_distance.txt "pi@192.168.1.223:~/Desktop/WorkstationB/"
 #######################
 expect {
   -re ".*es.*o.*" {
@@ -13,3 +13,4 @@ expect {
   }
 }
 interact
+

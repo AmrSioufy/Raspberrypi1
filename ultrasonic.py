@@ -40,10 +40,10 @@ for x in zero_to_infinity():
 			f.write((str(accurate_distance)))
 			f.write('\n')
 
-		if accurate_distance < 2:
-			print("Warning! : Safety Zone limit exceeded! Distance: %.2f m" % (distance/100))
-		else:
-			print("Distance: %.2f m" % (distance/100))
+#		if accurate_distance < 2:
+#			print("Warning! : Safety Zone limit exceeded! Distance: %.2f m" % (distance/100))
+#		else:
+#			print("Distance: %.2f m" % (distance/100))
 	finally:
 	    GPIO.cleanup()
 

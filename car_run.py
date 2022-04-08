@@ -35,9 +35,11 @@ b=GPIO.PWM(enB,1000)
 p.start(current_speed)
 b.start(current_speed)
 
-with open('A_speed.txt') as f:
-    f.write(current_speed)
+
+with open('A_speed.txt', 'w') as f:
+    f.write(str(current_speed))
     f.write('\n')
+
 
 print("\n")
 print("The car is now running!")
@@ -46,6 +48,8 @@ print("\n")
 
 
 while True:
+
+
 #Sending list of last 6 distance results to a txt file
 #Sending last speed to a txt file
     Distance_to_txt = "sed -e :a -e '$q;N;7,$D;ba' B_distance.txt > B_distance_stream.txt"
@@ -83,7 +87,7 @@ while True:
     GPIO.output(in2,GPIO.LOW)
     GPIO.output(in3,GPIO.HIGH)
     GPIO.output(in4,GPIO.LOW)
-    time.sleep(5)
+    time.sleep(1)
 
 #Decision Blocks#
 
@@ -94,7 +98,7 @@ while True:
         b.ChangeDutyCycle(25)
 
 #
-    elif storedSpeed<current_speed:
+    elif storedSpeed<current_speed and avg > 9:
         print("Decreased speed and Platooning to car B")
         p.ChangeDutyCycle(int(storedSpeed))
         b.ChangeDutyCycle(int(storedSpeed))
