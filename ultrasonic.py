@@ -19,7 +19,9 @@ for x in zero_to_infinity():
 		GPIO.setmode(GPIO.BOARD)
 		pinTrigger = 7
 		pinEcho = 11
+		GPIO.setwarnings(False)
 		GPIO.setup(pinTrigger, GPIO.OUT)
+		GPIO.setwarnings(False)
 		GPIO.setup(pinEcho, GPIO.IN)
 
 		GPIO.output(pinTrigger, GPIO.LOW)

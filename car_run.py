@@ -19,12 +19,25 @@ temp1=1
 current_speed = 70
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
 GPIO.setup(in1,GPIO.OUT)
+GPIO.setwarnings(False)
+
 GPIO.setup(in2,GPIO.OUT)
+GPIO.setwarnings(False)
+
 GPIO.setup(in3,GPIO.OUT)
+GPIO.setwarnings(False)
+
 GPIO.setup(in4,GPIO.OUT)
+GPIO.setwarnings(False)
+
 GPIO.setup(enA,GPIO.OUT)
+GPIO.setwarnings(False)
+
 GPIO.setup(enB,GPIO.OUT)
+GPIO.setwarnings(False)
 GPIO.output(in1,GPIO.LOW)
 GPIO.output(in2,GPIO.LOW)
 GPIO.output(in3,GPIO.LOW)
