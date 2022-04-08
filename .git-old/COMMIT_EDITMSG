@@ -1,0 +1,21 @@
+Automated scripts are set
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	new file:   A_distance.txt
+#	new file:   A_speed.txt
+#	renamed:    distance.txt -> B_distance.txt
+#	new file:   B_distance_stream.txt
+#	renamed:    speed.txt -> B_speed.txt
+#	renamed:    speed_stream.txt -> B_speed_stream.txt
+#	modified:   Transmitter.py
+#	new file:   all.sh
+#	modified:   car_run.py
+#	deleted:    distance_stream.txt
+#	modified:   transmit.sh
+#	modified:   ultrasonic.py
+#

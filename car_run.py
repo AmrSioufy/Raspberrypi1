@@ -72,7 +72,7 @@ while True:
         new_list = [x[:-1] for x in data]
         float_list = [int(float(x)) for x in new_list]
         avg = sum(float_list)/len(float_list)
-        print(avg)
+        print("Average Distance Between both Cars = ",avg)
 
 #        storedDistance = str(data) #converted list to string
 #        storedDistance = re.sub('[^0-9]','', storedDistance) #filtered string to a value
@@ -93,17 +93,27 @@ while True:
 
 #
     if storedSpeed==current_speed and avg > 2:
-        print("Platooning to car B")
-        p.ChangeDutyCycle(25)
-        b.ChangeDutyCycle(25)
-
-#
-    elif storedSpeed<current_speed and avg > 9:
-        print("Decreased speed and Platooning to car B")
+        print("car A and car B are both safe")
         p.ChangeDutyCycle(int(storedSpeed))
         b.ChangeDutyCycle(int(storedSpeed))
 
+
+    elif storedSpeed==current_speed and avg < 2:
+        print("Slightly Decreasing speed to maintain a safe distance from car B")
+        p.ChangeDutyCycle(int(storedSpeed)-10)
+        b.ChangeDutyCycle(int(storedSpeed)-10)
+
+#
+    elif storedSpeed<current_speed and avg < 2:
+        print("Decreased speed and increasing distance from car B")
+        p.ChangeDutyCycle(int(storedSpeed)-20)
+        b.ChangeDutyCycle(int(storedSpeed)-20)
+
+    elif storedSpeed<current_speed and avg > 2:
+        print("Possible safety zone break! safety distance will be maintained what so ever")
+        p.ChangeDutyCycle(current_speed)
+        b.ChangeDutyCycle(current_speed)
 #
     else:
-        print("<<<  ERROR! Check Decision blocks and Motor pin status  >>>")
-        break
+        print("<<<  Car running safely %% No decision is required  >>>")
+
