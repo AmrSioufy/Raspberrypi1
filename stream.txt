@@ -1,4 +1,4 @@
-Distance: 0.20 m
+wDistance: 0.20 m
 Speed: 60 Km/h
 Distance: 0.20 m
 Speed: 59 Km/h
