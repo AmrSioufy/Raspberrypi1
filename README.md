@@ -5,5 +5,5 @@
 - Transmit.py > runs scripts in a loop and continously sending a file to a user using transmit.sh
 - ultrasonic.py > distance sensor script
 
-*Every sensor script exports the data to a txt file which will be imported to the advmotor.py for the buildup scenarios*
+*Every sensor script exports the data to a txt file which will be imported to the car_run.py for the buildup scenarios*
 
