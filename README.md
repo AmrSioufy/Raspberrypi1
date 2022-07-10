@@ -6,7 +6,7 @@
 - transmit.sh > transmits a file to a user in the same network using secure copy. 
 ### To transmit a file you need to specify (Desitnation IP Address, Destination path, Destination username, Destination password, Path of transmitted files)
 
-- Transmit.py > runs all scripts in a loop and continously sending a file to a user using transmit.sh
+- Transmit.py > runs all scripts in a loop while continously sending files to a specified user using transmit.sh
 
 - ultrasonic.py > distance sensor script
 ### After reading the sensor readings, data is stored in a text file to be fetched later for a decision inside the "car_run.py"
