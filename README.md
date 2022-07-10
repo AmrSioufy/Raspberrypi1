@@ -1,5 +1,5 @@
 # This Reporsitory highlights the Collision Avoidance System application, part of my Graduation Project #
-## The below explanation is about the workstation in RaspberryPi directories in the Collision Avoidance System ##
+## The below explanation is about the workstation in RaspberryPi directories regarding the Collision Avoidance System ##
 
 - car_run.py > is the script that runs the car and processes data from distance sensor, stores car speed. based on that data decision is taken for different scenarios
 
